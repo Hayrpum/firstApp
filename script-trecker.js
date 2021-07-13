@@ -12,7 +12,7 @@ const newInput = document.createElement('input')
 newInput.classList.add('input')
 const newImg = document.createElement('img')
 newImg.classList.add('cross')
-newImg.src = "/firstApp/icon/Group 77.png"
+newImg.src = "./icon/Group 77.png"
 
 function createLine() {
     const task = document.createElement('label');
@@ -21,14 +21,14 @@ function createLine() {
     newInput.classList.add('input')
     const newImg = document.createElement('img')
     newImg.classList.add('cross')
-    newImg.src = "/firstApp/icon/Group 77.png"
+    newImg.src = "./icon/Group 77.png"
 
     container.append(task)
     task.append(newInput)
     task.append(newImg)
-     
-    newInput.addEventListener('keydown',(event)=>{
-        if(event.key === 'Enter'){
+
+    newInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
             createLine()
         }
     })
@@ -39,10 +39,10 @@ function createLine() {
     })
 
     newImg.addEventListener('mouseover', (event) => {
-        event.target.src = "/firstApp/icon/Group 70.png"
+        event.target.src = "./icon/Group 70.png"
     })
     newImg.addEventListener('mouseout', (event) => {
-        event.target.src = "/firstApp/icon/Group 77.png"
+        event.target.src = "./icon/Group 77.png"
     })
 }
 
@@ -55,25 +55,25 @@ createLine()
 
 sortButton.addEventListener('mouseover', (event) => {
     if (multiplay === -1) {
-        event.target.src = "/firstApp/icon/Group 73.png"
+        event.target.src = "./icon/Group 73.png"
     } else if (multiplay === 1) {
-        event.target.src = "/firstApp/icon/Group 91.png"
+        event.target.src = "./icon/Group 91.png"
     }
 })
 sortButton.addEventListener('mouseout', (event) => {
     if (multiplay === -1) {
-        event.target.src = "/firstApp/icon/Group 74.png"
+        event.target.src = "./icon/Group 74.png"
     } else if (multiplay === 1) {
-        event.target.src = "/firstApp/icon/Group 90.png"
+        event.target.src = "./icon/Group 90.png"
     }
 })
 
 sortButton.addEventListener('click', (event) => {
     if (multiplay === -1) {
-        event.target.src = "/firstApp/icon/Group 91.png"
+        event.target.src = "./icon/Group 91.png"
     }
     else if (multiplay === 1) {
-        event.target.src = "/firstApp/icon/Group 73.png"
+        event.target.src = "./icon/Group 73.png"
     }
 
     multiplay *= -1
@@ -107,11 +107,12 @@ sortButton.addEventListener('click', (event) => {
     function res(array) {
         const lableClear = document.querySelector('.bigBlock')
         lableClear.append(descriptionOne);
-        lableClear.innerHTML = '';
+        
         array.forEach((element) => {
-        lableClear.append(element);
+            lableClear.append(element);
+            element.remove()
         });
-        if(hasEmptyLine){
+        if (hasEmptyLine) {
             createLine()
         }
 
