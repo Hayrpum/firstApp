@@ -1,4 +1,4 @@
-const field = document.querySelector('.input-field')
+
 const description = document.querySelector('.input')
 const button = document.querySelector('.button')
 const container = document.querySelector('.bigBlock')
@@ -6,26 +6,21 @@ const sortButton = document.querySelector('.icon-sort')
 
 let multiplay = -1
 
-const task = document.createElement('label');
-task.classList.add('block')
-const newInput = document.createElement('input')
-newInput.classList.add('input')
-const newImg = document.createElement('img')
-newImg.classList.add('cross')
-newImg.src = "./icon/Group 77.png"
-
 function createLine() {
-    const task = document.createElement('label');
-    task.classList.add('block')
+    if (container.lastElementChild && container.lastElementChild.firstElementChild.value === '') {
+        return
+    }
+    const labelElement = document.createElement('label');
+    labelElement.classList.add('block')
     const newInput = document.createElement('input')
     newInput.classList.add('input')
     const newImg = document.createElement('img')
     newImg.classList.add('cross')
     newImg.src = "./icon/Group 77.png"
 
-    container.append(task)
-    task.append(newInput)
-    task.append(newImg)
+    container.append(labelElement)
+    labelElement.append(newInput)
+    labelElement.append(newImg)
 
     newInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
@@ -34,9 +29,14 @@ function createLine() {
     })
 
     newImg.addEventListener('click', (event) => {
-        event.target.parentElement.remove()
-
+        if (labelElement.parentElement.childElementCount > 1) {
+            event.target.parentElement.remove()
+        }
+        else {
+            return
+        }
     })
+
 
     newImg.addEventListener('mouseover', (event) => {
         event.target.src = "./icon/Group 70.png"
@@ -44,6 +44,9 @@ function createLine() {
     newImg.addEventListener('mouseout', (event) => {
         event.target.src = "./icon/Group 77.png"
     })
+
+    newInput.focus()
+
 }
 
 button.addEventListener('click', (event) => {
@@ -67,6 +70,7 @@ sortButton.addEventListener('mouseout', (event) => {
         event.target.src = "./icon/Group 90.png"
     }
 })
+
 
 sortButton.addEventListener('click', (event) => {
     if (multiplay === -1) {
@@ -104,20 +108,19 @@ sortButton.addEventListener('click', (event) => {
 
     })
 
-    function res(array) {
+    function render(array) {
         const lableClear = document.querySelector('.bigBlock')
         lableClear.append(descriptionOne);
-        
+        lableClear.innerHTML = ''
         array.forEach((element) => {
             lableClear.append(element);
-            element.remove()
         });
         if (hasEmptyLine) {
             createLine()
         }
 
     }
-    res(arr)
+    render(arr)
 })
 
 
